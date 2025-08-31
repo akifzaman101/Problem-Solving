@@ -25,24 +25,40 @@ class Solution:
             num //= 10
             place *= 10
         splited_numbers.reverse()
+        print(splited_numbers)
 
         roman_number = ""
         for number in splited_numbers:
-            for keys,values in integer_to_roman_dict.items():
-                if number == keys:
-                    roman_number += values
-                    break
+            if number in integer_to_roman_dict:
+                roman_number += integer_to_roman_dict[number]
+            else:
+                keys = sorted(integer_to_roman_dict.keys())   
 
+                previous_key = 0
+                i = 0
+
+                while i<len(keys) and keys[i] < number:
+                    i += 1
                     
-
-
-            
                 
-            
-            
-
-
-
+                if i == 0:  
+                    previous_key = keys[0]
+                elif i >= len(keys):  
+                    previous_key = keys[-1]
+                    value = number // previous_key
+                    roman_number += integer_to_roman_dict[previous_key] * value
+                else:  
+                    previous_key = keys[i-1]
+                    value = number 
+                    while value > 0:
+                        for k in reversed(keys):  
+                            if k <= value:
+                                roman_number += integer_to_roman_dict[k]
+                                value -= k
+                                break
+                    
+        return roman_number
+                
 
 ##Example usage:
 solution = Solution()
@@ -50,5 +66,5 @@ solution = Solution()
 # print(solution.intToRoman(4))      # Output: "IV"
 # print(solution.intToRoman(9))      # Output: "IX"
 # print(solution.intToRoman(58))     # Output: "LVIII"
-print(solution.intToRoman(1994))   # Output: "MCMXCIV"
-print(solution.intToRoman(3741))
+# print(solution.intToRoman(1994))   # Output: "MCMXCIV"
+print(solution.intToRoman(3749))
