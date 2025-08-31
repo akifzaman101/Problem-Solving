@@ -25,7 +25,6 @@ class Solution:
             num //= 10
             place *= 10
         splited_numbers.reverse()
-        print(splited_numbers)
 
         roman_number = ""
         for number in splited_numbers:
@@ -41,9 +40,7 @@ class Solution:
                     i += 1
                     
                 
-                if i == 0:  
-                    previous_key = keys[0]
-                elif i >= len(keys):  
+                if i == len(keys):  
                     previous_key = keys[-1]
                     value = number // previous_key
                     roman_number += integer_to_roman_dict[previous_key] * value
@@ -62,9 +59,9 @@ class Solution:
 
 ##Example usage:
 solution = Solution()
-# print(solution.intToRoman(3))      # Output: "III"  
-# print(solution.intToRoman(4))      # Output: "IV"
-# print(solution.intToRoman(9))      # Output: "IX"
-# print(solution.intToRoman(58))     # Output: "LVIII"
-# print(solution.intToRoman(1994))   # Output: "MCMXCIV"
+print(solution.intToRoman(3))      # Output: "III"  
+print(solution.intToRoman(4))      # Output: "IV"
+print(solution.intToRoman(9))      # Output: "IX"
+print(solution.intToRoman(58))     # Output: "LVIII"
+print(solution.intToRoman(1994))   # Output: "MCMXCIV"
 print(solution.intToRoman(3749))
