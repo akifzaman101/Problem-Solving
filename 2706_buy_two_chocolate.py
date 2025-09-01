@@ -5,14 +5,13 @@ class Solution:
     def buyChoco(self, prices: List[int], money: int) -> int:
         prices.sort()
 
-        for i in range(len(prices)):
-            if prices[i] + prices[i+1] > money:
-                return money
-            else:
-                sum = (prices[i] + prices[i+1]) - money
+        if prices[0] + prices[1] > money:
+            return money
+        else:
+            sum = (prices[0] + prices[1]) - money
 
-                return sum
-        
+            return sum
+    
 
 solution = Solution()
 print(solution.buyChoco([3,2,3],3))
